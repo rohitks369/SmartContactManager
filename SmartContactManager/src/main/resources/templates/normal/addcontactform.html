@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/userbase::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>This is home page</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-oP6HI/t1ektdLfJeELwRnWOl2A8Yw+WyAqLynB9K9HE=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<section>
+		<form class="col-md-6 offset-md-3 mt-2" action="#" th:object="${contact}" enctype="multipart/form-data"
+			method="POST" th:action="@{/user/process-contact}">
+			<h1 class="text-center mt-4 text-style">Add Contact</h1>
+
+			<!-- alert message for record add successful or failure -->
+			<div th:if="${session.message}" class="container col-8 border-0">
+
+				<div th:classappend="${'alert-'+session.message.type}" class="alert  text-center" id="alertMessage">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<!-- remove alert after completion -->
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="firstname">Firstname</label>
+					<input type="text" class="form-control" id="firstName" name="firstName" placeholder="firstname">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="lastname">Lastname</label>
+					<input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="contact">Contact</label>
+				<input type="tel" class="form-control" id="contact" name="contact" placeholder="+91-0000000000">
+			</div>
+			<div class="form-group">
+				<label for="address">Address</label>
+				<input type="text" class="form-control" id="address" name="address"
+					placeholder="Apartment, studio, or floor">
+			</div>
+			<div class="form-row ">
+
+				<div class="form-group col-md-5">
+					<label for="state">State</label>
+					<input type="text" class="form-control" id="state" name="state">
+				</div>
+
+				<div class="form-group col-md-5" id="cityGroup">
+					<label for="city">City</label>
+					<input type="text" class="form-control" id="city" name="city">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="zip">Zip</label>
+					<input type="text" class="form-control" id="zip" name="zip">
+				</div>
+				<div class="form-group col-md-12">
+					<label for="categories">Categories</label>
+					<select class="form-select" aria-label=".form-select-sm example" id="categories" name="categories">
+						<option selected>select ...</option>
+						<option value="Friends">Friends</option>
+						<option value="Family">Family</option>
+						<option value="Important">Important</option>
+						<option value="Office">Office</option>
+					</select>
+				</div>
+				<div class="form-group col-md-12">
+					<label for="about">About</label>
+					<textarea class="form-control" id="about" rows="3" name="about"
+						placeholder="Enter contact description"></textarea>
+				</div>
+				<div class="form-group col-md-12">
+					<label for="imageUrl">Choose</label>
+					<input type="file" class="form-control-file" accept="image/*" id="imageUrl" name="image">
+				</div>
+			</div>
+
+			<div class="container text-center">
+				<button type="submit" class="btn bg-primary text-white btn-lg">
+					Add contact
+				</button>
+			</div>
+		</form>
+	</section>
+
+	
+	<script src="scripts/jquery.js"></script>
+</body>
+
+</html>

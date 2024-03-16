@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>This is home page</title>
+</head>
+<!--
+	<div th:if="${param.error}" class="alert alert-danger">
+									Invalid username and password
+								</div>
+
+								<div th:if="${param.logout}" class="alert alert-success">
+									You have been logged out
+								</div>
+-->
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3 mt-2">
+					<div class="my-card">
+
+						<!-- alert message -->
+						<div th:if="${param.error}" class="alert alert-danger">
+							Invalid username and password
+						</div>
+
+						<div th:if="${param.logout}" class="alert alert-success">
+							You have been logged out
+						</div>
+
+						<div class="container text-center">
+							<img src="" style="width: 20%; height: 20%;" th:src="@{/image/phone.png}" />
+						</div>
+						<h1 class="text-center mt-4">Login</h1>
+						<form novalidate action="" th:action="@{/dologin}" method="post">
+
+
+							<!-- name field -->
+							<div class="form-group">
+								<label for="username">Email</label>
+								<input type="text" name="username" id="username" class="form-control">
+							</div>
+
+							<!-- password field -->
+							<div class="form-group">
+								<label for="password">Your Password</label>
+								<input type="password" name="password" id="password" class="form-control">
+							</div>
+
+							<!-- Remember me and Register here in one line -->
+							<div class="form-row align-items-center mb-3">
+								<div class="col">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="rememberMe"
+											name="rememberMe">
+										<label class="form-check-label" for="rememberMe">Remember me</label>
+									</div>
+								</div>
+								<div class="col text-right">
+									<a href="/signup" class="text-info">Register here</a>
+								</div>
+							</div>
+
+							<div class="container text-center">
+								<button type="submit" class="btn bg-primary text-white btn-lg">
+									Submit
+								</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>
